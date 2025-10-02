@@ -1,11 +1,14 @@
 package se233.chapter6.model;
 
 import javafx.geometry.Point2D;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.chapter6.view.GameStage;
 
 import java.util.Random;
 
 public class Food {
+    private static final Logger logger = LogManager.getLogger(Food.class);
     private Point2D position;
     private Random rn;
 
@@ -24,6 +27,7 @@ public class Food {
         do {
             this.position = new Point2D(rn.nextInt(GameStage.WIDTH), rn.nextInt(GameStage.HEIGHT));
         } while (prev_position == this.position);
+        logger.info("food: x:{} y:{}",this.position.getX(), this.position.getY());
     }
 
     public Point2D getPosition() {
